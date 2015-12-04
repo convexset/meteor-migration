@@ -1,0 +1,119 @@
+<template name="MigrationTestDirect">
+	<table>
+		<tr>
+			<td style="width: 20%;">
+				<table border=1>
+					<tr>
+						<th colspan="2">Data Set 1</th>
+					</tr>
+					<tr>
+						<td>Key</td>
+						<td>Value</td>
+					</tr>
+					{{#each repackageDictionaryAsArray randomData1}}
+						<tr>
+							<td>{{key}}</td>
+							<td>{{value}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+			<td>&nbsp;&nbsp;</td>
+			<td style="width: 20%;">
+				<table border=1>
+					<tr>
+						<th colspan="2">Data from Migration</th>
+					</tr>
+					<tr>
+						<td>Key</td>
+						<td>Value</td>
+					</tr>
+					{{#each repackageDictionaryAsArray migrationData1}}
+						<tr>
+							<td>{{key}}</td>
+							<td>{{value}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+			<td>&nbsp;&nbsp;</td>
+			<td style="width: 60%;">
+				<table border=1>
+					<tr>
+						<th colspan="3">Migration History</th>
+					</tr>
+					<tr>
+						<th>Init. Time</th>
+						<th>Migration Time</th>
+						<th>Num. Items</th>
+					</tr>
+					{{#each migrationHistory1}}
+						<tr>
+							<td>{{initTime}}</td>
+							<td>{{migrationTime}}</td>
+							<td>{{numItems}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<table border=1>
+					<tr>
+						<th colspan="2">Data Set 2</th>
+					</tr>
+					<tr>
+						<td>Key</td>
+						<td>Value</td>
+					</tr>
+					{{#each repackageDictionaryAsArray randomData2}}
+						<tr>
+							<td>{{key}}</td>
+							<td>{{value}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+			<td>&nbsp;&nbsp;</td>
+			<td>
+				<table border=1>
+					<tr>
+						<th colspan="2">Data from Migration</th>
+					</tr>
+					<tr>
+						<td>Key</td>
+						<td>Value</td>
+					</tr>
+					{{#each repackageDictionaryAsArray migrationData2}}
+						<tr>
+							<td>{{key}}</td>
+							<td>{{value}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+			<td>&nbsp;&nbsp;</td>
+			<td>
+				<table border=1>
+					<tr>
+						<th colspan="3">Migration History</th>
+					</tr>
+					<tr>
+						<th>Init. Time</th>
+						<th>Migration Time</th>
+						<th>Num. Items</th>
+					</tr>
+					{{#each migrationHistory2}}
+						<tr>
+							<td>{{initTime}}</td>
+							<td>{{migrationTime}}</td>
+							<td>{{numItems}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+		</tr>
+	</table>
+</template>

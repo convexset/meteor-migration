@@ -1,0 +1,61 @@
+<template name="MigrationTestTemplateLevel">
+	<table>
+		<tr>
+			<td style="width: 20%;">
+				<table border=1>
+					<tr>
+						<th colspan="2">Data</th>
+					</tr>
+					<tr>
+						<td>Key</td>
+						<td>Value</td>
+					</tr>
+					{{#each repackageDictionaryAsArray randomData}}
+						<tr>
+							<td>{{key}}</td>
+							<td>{{value}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+			<td>&nbsp;&nbsp;</td>
+			<td style="width: 20%;">
+				<table border=1>
+					<tr>
+						<th colspan="2">Data from Migration</th>
+					</tr>
+					<tr>
+						<td>Key</td>
+						<td>Value</td>
+					</tr>
+					{{#each repackageDictionaryAsArray migrationData}}
+						<tr>
+							<td>{{key}}</td>
+							<td>{{value}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+			<td>&nbsp;&nbsp;</td>
+			<td style="width: 60%;">
+				<table border=1>
+					<tr>
+						<th colspan="3">Migration History</th>
+					</tr>
+					<tr>
+						<th>Init. Time</th>
+						<th>Migration Time</th>
+						<th>Num. Items</th>
+					</tr>
+					{{#each migrationHistory}}
+						<tr>
+							<td>{{initTime}}</td>
+							<td>{{migrationTime}}</td>
+							<td>{{numItems}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</td>
+		</tr>
+	</table>
+</template>

@@ -1,0 +1,25 @@
+<head>
+	<title>Migration Demo</title>
+</head>
+
+<body>
+	<h1>Migration Test</h1>	
+	{{> MigrationTest}}
+</body>
+
+<template name="MigrationTest">
+	Click to Reload (also, see <code>console</code>)
+	<button class='reload'>Reload</button>
+	<button class='toggle-template-level-migration'>Remove Template-Level Migration Item</button>
+	<hr/>
+	<h3>Direct</h3>
+	{{> MigrationTestDirect}}
+	<hr/>
+	{{#if haveTemplateLevelMigration}}
+		<h3>Template-level</h3>
+		{{> MigrationTestTemplateLevel}}
+
+		<!-- Throws an error if a custom name is not set for the next instance -->
+		{{> MigrationTestTemplateLevel migrationName='MigrationTestTemplateLevel.2'}}
+	{{/if}}
+</template>
