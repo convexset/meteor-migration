@@ -50,7 +50,8 @@ var _migrationPayload = EJSON.parse(Reload._migrationData(MIGRATION_NAME) || "{}
 
 // Set up onMigrate onStartup
 var _retryFn = null;
-var _migrateComplete = false;
+var _migrationDataGenerationComplete = false;
+var _dataPayload;
 Meteor.startup(function() {
 	Reload._onMigrate(MIGRATION_NAME, function(retry) {
 		var isReady = true;
@@ -58,32 +59,33 @@ Meteor.startup(function() {
 			isReady = isReady && Tracker.nonreactive(_.bind(migration.ready, migration));
 		});
 
-		if (isReady && !_migrateComplete) {
+		if (isReady) {
 			_retryFn = null;
 
 			// Prepare data payload and history
-			var now = new Date();
-			var dataPayload = {};
-			_.forEach(allMigrations, function(migration, key) {
-				var history = (_migrationPayload && _migrationPayload[key] && _migrationPayload[key].history || []).map(x => x);
-				history.unshift(_.extend({
-					migrationTime: now,
-					initTime: migration._initTime,
-				}, migration.historyPayload()));
+			if (!_migrationDataGenerationComplete) {
+				var now = new Date();
+				_dataPayload = {};
+				_.forEach(allMigrations, function(migration, key) {
+					var history = (_migrationPayload && _migrationPayload[key] && _migrationPayload[key].history || []).map(x => x);
+					history.unshift(_.extend({
+						migrationTime: now,
+						initTime: migration._initTime,
+					}, migration.historyPayload()));
 
-				dataPayload[key] = {
-					migrationTime: now,
-					initTime: migration._initTime,
-					history: history,
-					data: Tracker.nonreactive(_.bind(migration.data, migration)),
-				};
-			});
+					dataPayload[key] = {
+						migrationTime: now,
+						initTime: migration._initTime,
+						history: history,
+						data: Tracker.nonreactive(_.bind(migration.data, migration)),
+					};
+				});
+				_migrationDataGenerationComplete = true;
+			}
 
 			// Stop all computations
 			_.forEach(allMigrations, migration => migration.stop());
-
-			_migrateComplete = true;
-			return [true, EJSON.stringify(dataPayload)];
+			return [true, EJSON.stringify(_dataPayload)];
 		} else {
 			if (!_retryFn) {
 				_retryFn = retry;

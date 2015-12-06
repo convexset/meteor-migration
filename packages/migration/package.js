@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'convexset:migration',
-	version: '0.1.0',
+	version: '0.1.1',
 	summary: 'Simple API for data migration on reload (features \"template-level\" set-up/tear-down)',
 	git: 'https://github.com/convexset/meteor-migration',
 	documentation: '../../README.md'
