@@ -8,7 +8,11 @@ Package.describe({
 
 Package.onUse(function(api) {
 	api.versionsFrom('1.2.1');
-	api.use(['ecmascript', 'underscore', 'ejson', 'reload', 'convexset:package-utils@0.1.8'], 'client');
+	api.use([
+		'ecmascript', 'underscore', 'ejson',
+		'reload',
+		'convexset:package-utils@0.1.9',
+	], 'client');
 	api.addFiles(['migration.js'], 'client');
 	api.export(['onMigrate', 'Migration'], 'client');
 });
