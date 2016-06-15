@@ -78,7 +78,7 @@ Meteor.startup(function() {
 						initTime: migration._initTime,
 					}, migration.historyPayload()));
 
-					dataPayload[key] = {
+					_dataPayload[key] = {
 						migrationTime: now,
 						initTime: migration._initTime,
 						history: history,
