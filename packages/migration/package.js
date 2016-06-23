@@ -1,4 +1,5 @@
 Package.describe({
+	// [validatis:stack]
 	name: 'convexset:migration',
 	version: '0.1.1_3',
 	summary: 'Simple API for data migration on reload (features \"template-level\" set-up/tear-down)',
